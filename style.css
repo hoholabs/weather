@@ -1,0 +1,31 @@
+:root {
+  --color1: rgb(102, 161, 209);
+  --color2: rgb(215, 236, 243);
+  --color3: white;
+  background-color: var(--color1);
+}
+
+#mainDiv {
+  background-color: var(--color2);
+  height: 80vw;
+  width: 80vw;
+  margin: auto;
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 10px #555875;
+          box-shadow: 5px 5px 10px #555875;
+  display: -ms-grid;
+  display: grid;
+}
+
+#current {
+  border: solid orange 2px;
+  width: 20vw;
+  height: 20vw;
+}
+
+#forecast {
+  border: solid yellow 2px;
+  width: 60vw;
+  height: 20vw;
+}
+/*# sourceMappingURL=style.css.map */
