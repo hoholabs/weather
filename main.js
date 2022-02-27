@@ -6,6 +6,15 @@ button.addEventListener('click', ()=>{
     showWeather(getWeather());
 });
 
+input.addEventListener("keyup", ()=> {
+
+    if (event.keyCode === 13){
+        clearWeather();
+        showWeather(getWeather());
+    }
+
+});
+
 async function getWeather(){
 
     //Use geocode API to get lat and lon from input
@@ -83,7 +92,6 @@ function clearWeather(){
     tempDiv.textContent = ""
     descDiv.textContent = ""
     windDiv.textContent = ""
-
 }
 
-showWeather(getWeather());
+//showWeather(getWeather());
