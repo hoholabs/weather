@@ -111,14 +111,24 @@ async function showWeather(promise){
     tempDiv.textContent = Math.round(temp*1)/1+"°";
 
     //Description
-    descDiv.textContent = desc.description + precipitation(precAmt);
+    descDiv.textContent = desc.description //+ " " +precipitation(precAmt) + " in/hour";
     let icon = document.createElement('img');
     icon.src = `http://openweathermap.org/img/wn/${desc.icon}@2x.png`;
     descDiv.append(icon);
 
+    //Wind
 
+    let windUnits =""
+    
+    if(units == "imperial"){
+        windUnits = "mph";
+    } else if (units == "metric"){
+        windUnits = "m/s"
+    };
+    console.log(windUnits);
+    
     let windText = document.createElement('span');
-    windText.textContent = `${Math.round(windSpeed)}mph\n${convertWind(windDir)}`;
+    windText.textContent = `${Math.round(windSpeed)} ${windUnits}\n${convertWind(windDir)}`;
 
     let windArrow = document.createElement('div')
     windArrow.id = 'windArrow';

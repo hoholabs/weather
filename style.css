@@ -75,6 +75,7 @@ nav #cBtn {
   border: 0px;
   padding: 1vmin;
   border-radius: 1vmin;
+  width: 4vmin;
 }
 
 #current {
@@ -107,7 +108,6 @@ nav #cBtn {
 }
 
 #current div {
-  border: solid red 2px;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
