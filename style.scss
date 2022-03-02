@@ -39,7 +39,7 @@ nav{
         
         //box-shadow: 0 0 10px black;
     }
-    button{
+    #goBtn{
 
         color: var(--color2);
         background-color: var(--color1);
@@ -48,6 +48,26 @@ nav{
         padding: 1vmin;
         border-top-right-radius: 1vmin;
         border-bottom-right-radius: 1vmin;
+    }
+
+    #fBtn{
+        color: var(--color2);
+        background-color: var(--color1);
+        border:transparent;
+        border: 0px;
+        padding: 1vmin;
+        border-radius: 1vmin;
+        width: 4vmin;
+
+    }
+    #cBtn{
+        color: var(--color1);
+        background-color: var(--color2);
+        border:transparent;
+        border: 0px;
+        padding: 1vmin;
+        border-radius: 1vmin
+        width: 4vmin;
     }
 }
 
@@ -71,7 +91,7 @@ nav{
     }
 
     div{
-        //border: solid red 2px;
+        border: solid red 2px;
         align-self: center;
         justify-self: center;
         color: var(--color1);
@@ -81,15 +101,24 @@ nav{
         font-size: 15vmin;
         grid-area: 1/1/2/2;
     }
-    #perc{
+    #prec{
         justify-self: center;
+        width:100%;
+        height:100%;
+        text-align: center;
+        text-justify: auto;
         //grid-row: 1/2;
         //grid-column: 2/3;
         grid-area: 1/2/2/3;
+        //font-size: 100%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
     }
     #desc{
         text-align: center;
         grid-area: 2/1/3/2;
+        display:grid;
         
     }
     #wind{
@@ -97,6 +126,35 @@ nav{
         white-space: pre-wrap;
         text-align:center;
         grid-area: 2/2/3/3;
+        width:100%;
+        height:100%;
+        //color:red;
+        display:grid;
+        grid-template: 1fr /1fr;
+        position: relative;
+
+        span{
+            position: absolute;
+            z-index:2;
+            justify-self: center;
+            align-self: center;
+
+        }
+
+        #windArrow{
+            position: absolute;
+            z-index:1;
+            width: 0;
+            height: 0;
+            border-left: 3vmin solid transparent;
+            border-right: 3vmin solid transparent;
+            border-bottom: 15vmin solid white;
+            border-top: none;
+            //transform: rotate(0deg);
+            //bottom:20vmin;
+            //top: 0;
+            //outline: solid green 2px;
+        }
     }
 }
 

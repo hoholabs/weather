@@ -48,7 +48,7 @@ nav input:focus {
   outline: none;
 }
 
-nav button {
+nav #goBtn {
   color: var(--color2);
   background-color: var(--color1);
   border: transparent;
@@ -56,6 +56,25 @@ nav button {
   padding: 1vmin;
   border-top-right-radius: 1vmin;
   border-bottom-right-radius: 1vmin;
+}
+
+nav #fBtn {
+  color: var(--color2);
+  background-color: var(--color1);
+  border: transparent;
+  border: 0px;
+  padding: 1vmin;
+  border-radius: 1vmin;
+  width: 4vmin;
+}
+
+nav #cBtn {
+  color: var(--color1);
+  background-color: var(--color2);
+  border: transparent;
+  border: 0px;
+  padding: 1vmin;
+  border-radius: 1vmin;
 }
 
 #current {
@@ -88,6 +107,7 @@ nav button {
 }
 
 #current div {
+  border: solid red 2px;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -107,14 +127,26 @@ nav button {
   grid-area: 1/1/2/2;
 }
 
-#current #perc {
-  -ms-grid-column-align: center;
-      justify-self: center;
+#current #prec {
+  justify-self: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  text-justify: auto;
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-area: 1/2/2/3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #current #desc {
@@ -124,6 +156,8 @@ nav button {
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-area: 2/1/3/2;
+  display: -ms-grid;
+  display: grid;
 }
 
 #current #wind {
@@ -136,6 +170,35 @@ nav button {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-area: 2/2/3/3;
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr;
+  -ms-grid-columns: 1fr;
+      grid-template: 1fr /1fr;
+  position: relative;
+}
+
+#current #wind span {
+  position: absolute;
+  z-index: 2;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+#current #wind #windArrow {
+  position: absolute;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  border-left: 3vmin solid transparent;
+  border-right: 3vmin solid transparent;
+  border-bottom: 15vmin solid white;
+  border-top: none;
 }
 
 #forecast {
