@@ -24,6 +24,7 @@
   -ms-grid-rows: 10vmin (1fr)[2];
   -ms-grid-columns: (1fr)[2];
       grid-template: 10vmin repeat(2, 1fr)/repeat(2, 1fr);
+  position: relative;
 }
 
 nav {
@@ -82,6 +83,18 @@ nav #cBtn {
   padding: 1vmin;
   border-radius: 1vmin;
   width: 4vmin;
+}
+
+#locations {
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  -ms-grid-column: 1;
+      grid-column-start: 1;
+  grid-row-end: -1;
+  color: var(--color1);
+  position: absolute;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 #current {

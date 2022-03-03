@@ -21,6 +21,7 @@
     box-shadow: 5px 5px 10px rgb(85, 88, 117);
     display:grid;
     grid-template: 10vmin repeat(2, 1fr) / repeat(2, 1fr);
+    position:relative;
     
 }
 
@@ -77,6 +78,15 @@ nav{
     }
 }
 
+#locations{
+    grid-row-start:2;
+    grid-column-start: 1;
+    grid-row-end: -1;
+    color:var(--color1);    
+    position:absolute;
+    justify-self: center;
+}
+
 #current{
     grid-row-start: 2;
     //border: solid orange 2px;
@@ -84,6 +94,8 @@ nav{
     height:70vmin;
     display:grid;
     grid-template: 1fr 1fr / 1fr 1fr;
+
+
 
     #spinner{
         //border: solid red 2px;

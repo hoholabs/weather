@@ -1,14 +1,17 @@
 let input = document.querySelector('input');
 let button = document.querySelector('button');
+let nav = document.querySelector('nav');
+let current = document.getElementById('current');
+let mainDiv = document.getElementById('mainDiv');
 
 button.addEventListener('click', ()=>{
-    showWeather(getWeather());
+    selectLocation();
 });
 
 input.addEventListener("keyup", ()=> {
 
     if (event.keyCode === 13){
-        showWeather(getWeather());
+        selectLocation();
     }
 
 });
@@ -40,19 +43,54 @@ cBtn.addEventListener('click', ()=>{
     showWeather(getWeather());
 })
 
-
-async function getWeather(){
-
-    //Use geocode API to get lat and lon from input
-    
+async function selectLocation(){
+    clearWeather();
     const locResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=5&appid=127a7807fe4ed3c75fbfbbfde9368206`);
     const location = await locResponse.json();
 
+    if (location.length>1){
+        let locationsDiv = document.createElement('div');
+        i=0;
+            location.forEach(element => {
+            let selection = document.createElement('div');
+            selection.textContent = `${element.name}, ${element.state}`
+            selection.setAttribute('data-loc', i);
+            selection.classList.add('locSelection');
+            i++
+            selection.addEventListener('click', chooseLocation);
+            locationsDiv.append(selection);
+        });
+        locationsDiv.id = "locations";
+        mainDiv.insertBefore(locationsDiv, current);
+
+    }
+    function chooseLocation(e){
+        clearWeather();
+        let spinner = document.getElementById("spinner");
+        spinner.style.display = "inline";
+
+        let arrayPos = e.target.dataset.loc;
+        input.value = `${location[arrayPos].name}, ${location[arrayPos].state}`
+        let lat = location[arrayPos].lat;
+        let lon = location[arrayPos].lon
+
+    getWeather(lat, lon)
+    }
+}
+
+async function getWeather(lat, lon){
+
+    //Use geocode API to get lat and lon from input
+    
+    // const locResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=5&appid=127a7807fe4ed3c75fbfbbfde9368206`);
+    // const location = await locResponse.json();
+
     //add a part in here that lets user selct city from the returned array
+
     //uses location at array[0] for now
 
-    const lat = await location[0].lat;
-    const lon = await location[0].lon;
+    // const lat = await location[0].lat;
+    // const lon = await location[0].lon;
 
     //fetch weather data using lat and lon
     const weatherResponse = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=127a7807fe4ed3c75fbfbbfde9368206`);
@@ -63,7 +101,9 @@ async function getWeather(){
     const forecastResponse = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=${units}&appid=127a7807fe4ed3c75fbfbbfde9368206`);
     const forecast = await forecastResponse.json()
 
-    return [weather,forecast];
+    //return [weather,forecast];
+
+    showWeather(weather);
 }
 
 function convertTemp(K){
@@ -80,22 +120,20 @@ function convertWind(deg){
 };
 
 async function showWeather(promise){
-    clearWeather();
-    let spinner = document.getElementById("spinner");
-    spinner.style.display = "inline";
-
+    
     let array = await promise;
-    spinner.style.display = "none";
-    let report = array[0];
-    //let forecast = array[1];
-    console.log(report);
 
+    spinner.style.display = "none";
+    let report = array;
+    //let forecast = array[1];
 
     let temp =  report.main.temp;
     let tempFeels = Math.round(report.main.feels_like);
     let prec =  report.weather[0].main;
+
     let precType = prec.toLowerCase();
-    let precAmt = report[precType]["1h"];
+
+    //let precAmt = report[precType]["1h"];
     let desc =  report.weather[0];
     let windSpeed =  report.wind.speed;
     let windDir =  report.wind.deg;
@@ -107,8 +145,8 @@ async function showWeather(promise){
 
     //precipitarion
 
-    precDiv.textContent = precipitation(precAmt,prec);
-    console.log(prec);
+    //precDiv.textContent = precipitation(precAmt,prec);
+
 
     //Temp
     tempDiv.textContent = Math.round(temp*1)/1+"°";
@@ -134,7 +172,7 @@ async function showWeather(promise){
     } else if (units == "metric"){
         windUnits = "m/s"
     };
-    console.log(windUnits);
+
     
     let windText = document.createElement('span');
     windText.textContent = `${Math.round(windSpeed)} ${windUnits}\n${convertWind(windDir)}`;
@@ -145,8 +183,6 @@ async function showWeather(promise){
 
     windDiv.append(windText);
     windDiv.append(windArrow);
-
-
 
 }
 
@@ -160,7 +196,11 @@ function clearWeather(){
     tempDiv.textContent = ""
     descDiv.textContent = ""
     windDiv.textContent = ""
-    console.log(windDiv);
+
+    let locations = document.querySelectorAll('.locSelection');
+    locations.forEach(element => {
+        element.remove();
+    });
 }
 
 function precipitation(precAmt,prec){
@@ -172,4 +212,4 @@ function precipitation(precAmt,prec){
 
 }
 
-showWeather(getWeather());
+// showWeather(getWeather());
