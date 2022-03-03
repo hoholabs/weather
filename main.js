@@ -1,4 +1,5 @@
 let input = document.querySelector('input');
+input.value = "";
 let button = document.querySelector('button');
 let nav = document.querySelector('nav');
 let current = document.getElementById('current');
@@ -45,6 +46,8 @@ cBtn.addEventListener('click', ()=>{
 
 async function selectLocation(){
     clearWeather();
+
+    //Use geocode API to get lat and lon from input
     const locResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=5&appid=127a7807fe4ed3c75fbfbbfde9368206`);
     const location = await locResponse.json();
 
@@ -53,7 +56,12 @@ async function selectLocation(){
         i=0;
             location.forEach(element => {
             let selection = document.createElement('div');
+            console.log(element.name);
+            if (element.state == null){
+                selection.textContent = element.name;
+            } else{
             selection.textContent = `${element.name}, ${element.state}`
+            }
             selection.setAttribute('data-loc', i);
             selection.classList.add('locSelection');
             i++
@@ -80,17 +88,6 @@ async function selectLocation(){
 
 async function getWeather(lat, lon){
 
-    //Use geocode API to get lat and lon from input
-    
-    // const locResponse = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input.value}&limit=5&appid=127a7807fe4ed3c75fbfbbfde9368206`);
-    // const location = await locResponse.json();
-
-    //add a part in here that lets user selct city from the returned array
-
-    //uses location at array[0] for now
-
-    // const lat = await location[0].lat;
-    // const lon = await location[0].lon;
 
     //fetch weather data using lat and lon
     const weatherResponse = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=127a7807fe4ed3c75fbfbbfde9368206`);
@@ -120,7 +117,7 @@ function convertWind(deg){
 };
 
 async function showWeather(promise){
-    
+
     let array = await promise;
 
     spinner.style.display = "none";
