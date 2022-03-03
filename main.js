@@ -92,6 +92,7 @@ async function showWeather(promise){
 
 
     let temp =  report.main.temp;
+    let tempFeels = Math.round(report.main.feels_like);
     let prec =  report.weather[0].main;
     let precType = prec.toLowerCase();
     let precAmt = report[precType]["1h"];
@@ -105,13 +106,21 @@ async function showWeather(promise){
     let windDiv = document.getElementById("wind");
 
     //precipitarion
-    precDiv.textContent = prec;
+
+    precDiv.textContent = precipitation(precAmt,prec);
+    console.log(prec);
 
     //Temp
     tempDiv.textContent = Math.round(temp*1)/1+"°";
+    let feelSpan = document.createElement('span');
+    feelSpan.textContent = `feels like ${tempFeels}°`;
+    tempDiv.append(feelSpan);
 
     //Description
-    descDiv.textContent = desc.description //+ " " +precipitation(precAmt) + " in/hour";
+
+
+
+    descDiv.textContent = desc.description + " " 
     let icon = document.createElement('img');
     icon.src = `http://openweathermap.org/img/wn/${desc.icon}@2x.png`;
     descDiv.append(icon);
@@ -154,10 +163,13 @@ function clearWeather(){
     console.log(windDiv);
 }
 
-function precipitation(precAmt){
+function precipitation(precAmt,prec){
 
+    if(precAmt == null){
+        return "";
+    }
+    return `${prec} \n ${precAmt} in/h`;
 
-    return precAmt
 }
 
 showWeather(getWeather());

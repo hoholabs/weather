@@ -5,7 +5,13 @@
   background-color: var(--color1);
 }
 
+@font-face {
+  font-family: 'IBM';
+  src: url("IBMPlexSansThai-Thin.ttf");
+}
+
 #mainDiv {
+  font-family: 'IBM', Verdana, Geneva, Tahoma, sans-serif;
   background-color: var(--color2);
   height: 80vmin;
   width: 80vmin;
@@ -119,12 +125,20 @@ nav #cBtn {
 #current #temp {
   -ms-grid-column-align: center;
       justify-self: center;
-  font-size: 15vmin;
+  font-size: 13vmin;
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-area: 1/1/2/2;
+  display: -ms-grid;
+  display: grid;
+}
+
+#current #temp span {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  font-size: 2vmin;
 }
 
 #current #prec {
@@ -147,9 +161,11 @@ nav #cBtn {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  white-space: pre-wrap;
 }
 
 #current #desc {
+  font-size: 4vmin;
   text-align: center;
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
@@ -160,7 +176,13 @@ nav #cBtn {
   display: grid;
 }
 
+#current #desc img {
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
 #current #wind {
+  font-size: 4vmin;
   -ms-grid-column-align: center;
       justify-self: center;
   white-space: pre-wrap;
