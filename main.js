@@ -55,7 +55,7 @@ async function selectLocation(){
         let locationsDiv = document.createElement('div');
         i=0;
             location.forEach(element => {
-            let selection = document.createElement('div');
+            let selection = document.createElement('button');
             console.log(element.name);
             if (element.state == null){
                 selection.textContent = element.name;
@@ -69,7 +69,8 @@ async function selectLocation(){
             locationsDiv.append(selection);
         });
         locationsDiv.id = "locations";
-        mainDiv.insertBefore(locationsDiv, current);
+        nav.append(locationsDiv);
+        //mainDiv.insertBefore(locationsDiv, current);
 
     }
     function chooseLocation(e){

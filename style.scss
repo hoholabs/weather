@@ -27,11 +27,14 @@
 
 nav{
     //border: grey solid 2px;
+    display:grid;
+    grid-auto-flow: column;
     padding: 1vmin;
-    align-self:center;
+    //align-self:center;
     justify-self:center;
     grid-area: 1/ 1/ 2/ 4;
     grid-gap:0;
+    grid-template-rows: 5vmin 1fr;
     
     input{
         color: var(--color2);
@@ -40,6 +43,8 @@ nav{
         padding: 1vmin;
         border-top-left-radius: 1vmin;
         border-bottom-left-radius: 1vmin;
+        grid-row-start: 1;
+        
     }
     input:focus { 
         outline: none;
@@ -55,6 +60,7 @@ nav{
         padding: 1vmin;
         border-top-right-radius: 1vmin;
         border-bottom-right-radius: 1vmin;
+        grid-row-start: 1;
     }
 
     #fBtn{
@@ -65,6 +71,8 @@ nav{
         padding: 1vmin;
         border-radius: 1vmin;
         width: 4vmin;
+        grid-row-start: 1;
+        margin-left: 1vmin;
 
     }
     #cBtn{
@@ -75,16 +83,32 @@ nav{
         padding: 1vmin;
         border-radius: 1vmin;
         width: 4vmin;
+        grid-row-start: 1;
     }
 }
 
 #locations{
-    grid-row-start:2;
+    grid-row-start:3;
     grid-column-start: 1;
-    grid-row-end: -1;
+    //grid-row-end: -1;
     color:var(--color1);    
-    position:absolute;
-    justify-self: center;
+    //position:absolute;
+    //justify-self: center;
+    display:grid;
+    height: 5vmin;
+    justify-content: left;
+    z-index: 3;
+
+    .locSelection{
+        color: var(--color2);
+        background-color: var(--color1);
+        border:none;
+        padding: 1vmin;
+        margin: .5vmin;
+        border-radius: 1vmin;
+        justify-self: left;
+        margin-bottom: 0;
+    }
 }
 
 #current{

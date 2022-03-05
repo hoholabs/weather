@@ -28,10 +28,10 @@
 }
 
 nav {
+  display: -ms-grid;
+  display: grid;
+  grid-auto-flow: column;
   padding: 1vmin;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
   -ms-grid-column-align: center;
       justify-self: center;
   -ms-grid-row: 1;
@@ -40,6 +40,8 @@ nav {
   -ms-grid-column-span: 3;
   grid-area: 1/ 1/ 2/ 4;
   grid-gap: 0;
+  -ms-grid-rows: 5vmin 1fr;
+      grid-template-rows: 5vmin 1fr;
 }
 
 nav input {
@@ -49,6 +51,8 @@ nav input {
   padding: 1vmin;
   border-top-left-radius: 1vmin;
   border-bottom-left-radius: 1vmin;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
 }
 
 nav input:focus {
@@ -63,6 +67,8 @@ nav #goBtn {
   padding: 1vmin;
   border-top-right-radius: 1vmin;
   border-bottom-right-radius: 1vmin;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
 }
 
 nav #fBtn {
@@ -73,6 +79,9 @@ nav #fBtn {
   padding: 1vmin;
   border-radius: 1vmin;
   width: 4vmin;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
+  margin-left: 1vmin;
 }
 
 nav #cBtn {
@@ -83,18 +92,35 @@ nav #cBtn {
   padding: 1vmin;
   border-radius: 1vmin;
   width: 4vmin;
+  -ms-grid-row: 1;
+      grid-row-start: 1;
 }
 
 #locations {
-  -ms-grid-row: 2;
-      grid-row-start: 2;
+  -ms-grid-row: 3;
+      grid-row-start: 3;
   -ms-grid-column: 1;
       grid-column-start: 1;
-  grid-row-end: -1;
   color: var(--color1);
-  position: absolute;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  display: -ms-grid;
+  display: grid;
+  height: 5vmin;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  z-index: 3;
+}
+
+#locations .locSelection {
+  color: var(--color2);
+  background-color: var(--color1);
+  border: none;
+  padding: 1vmin;
+  margin: .5vmin;
+  border-radius: 1vmin;
+  -ms-grid-column-align: left;
+      justify-self: left;
+  margin-bottom: 0;
 }
 
 #current {
